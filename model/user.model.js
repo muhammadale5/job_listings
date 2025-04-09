@@ -7,13 +7,6 @@ const ROLES = {
 
 const userSchema = new mongoose.Schema(
   {
-    // username: {
-    //   type: String,
-    //   required: [true, 'Username is required'],
-    //   unique: true,
-    //   trim: true,
-    //   match: [/^[a-zA-Z0-9_]+$/, 'Username can only contain letters, numbers, and underscores']
-    // },
     email: {
       type: String,
       required: [true, 'Email is required'],
@@ -26,10 +19,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Password is required'],
       minlength: [8, 'Password must be at least 8 characters long'],
-    },
-    passwordConfirm: {
-      type: String,
-      required: [true, 'Password Confirm is required'],
     },
     role: {
       type: String,

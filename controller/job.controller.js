@@ -20,13 +20,12 @@ export const createJob = async (req, res) => {
     });
   }
 };
-export const updateJob = async(req, res) => {
+export const updateJob = async (req, res) => {
   try {
     const data = req.body;
     const newJob = await Job.updateOne(data);
     await newJob.save();
 
-
     res.status(201).json({
       status: "success",
       data: {},
@@ -39,13 +38,12 @@ export const updateJob = async(req, res) => {
     });
   }
 };
-export const deleteJob = async(req, res) => {
+export const deleteJob = async (req, res) => {
   try {
     const data = req.body;
     const newJob = await Job.deleteOne(data);
     await newJob.save();
 
-
     res.status(201).json({
       status: "success",
       data: {},
@@ -58,16 +56,15 @@ export const deleteJob = async(req, res) => {
     });
   }
 };
-export const getJob = async(req, res) => {
+export const getJob = async (req, res) => {
   try {
-    const data = req.body;
-    const newJob = await Job.get(data);
-    await newJob.save();
+    const { id } = req.params;
 
+    const job = await Job.findById(id);
 
-    res.status(201).json({
+    res.status(200).json({
       status: "success",
-      data: {},
+      data: { job },
     });
   } catch (error) {
     res.status(500).json({
@@ -79,14 +76,11 @@ export const getJob = async(req, res) => {
 };
 export const getAllJobs = async (req, res) => {
   try {
-    const data = req.body;
-    const newJob = await Job.getAllJobs(data);
-    await newJob.save();   
+    const jobs = await Job.find({});
 
-
-    res.status(201).json({
+    res.status(200).json({
       status: "success",
-      data: {},
+      data: { jobs },
     });
   } catch (error) {
     res.status(500).json({
